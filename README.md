@@ -31,24 +31,19 @@ Run the backend:
 
 Backend directory structure:
 
-    userinterestfrontend
-    ├── api/
-    │   ├── migrations/
+    iharp-user-interest-interface
+    ├── frontend/
+    │   ├── public/
     │   ├── __init__.py
-    │   ├── admin.py
-    │   ├── apps.py
-    │   ├── models.py
-    │   ├── serializers.py
-    │   ├── tests.py
-    │   ├── views.py
-    │   └── urls.py
-    ├── mybackend/
+    │   ├── ...
+    ├── backend/
     │   ├── __init__.py
     │   ├── asgi.py
     │   ├── settings.py
     │   ├── urls.py
+    │   ├── ...
     │   └── wsgi.py
-    ├── manage.py
+    ├── README.md
     ├── init_venv.sh
     └── requirements.txt
 
@@ -57,4 +52,4 @@ Package dependancies are managed with the `requirenments.txt` file.
 
 Install dependencies:
 
-    source init_venv.sh
+    bash init_venv.sh
