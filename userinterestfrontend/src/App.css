@@ -1,0 +1,32 @@
+#root {
+  text-align: center;
+}
+
+body {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.main_wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 90vh; 
+  justify-content: center;
+  align-items: center;
+}
+
+.main_content {
+  flex-grow: 1; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  height: 100%;
+  color: white;
+}
+
+.hline {  
+  height: 90%;
+  border-left: 1px solid gray;
+  border-radius: 8px;
+}
