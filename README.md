@@ -2,24 +2,23 @@
 The interface will facilitate user interest input by allowing users to choose regions of interest on a map and select the temporal and spatial resolution for that region.
 
 ## Implementation
-We will use React software javascript library for the frontend and Django for the backend.
+We will use React with Vite for the frontend and Django for the backend.
 
 ## Set-up React Frontend
 Create the React App:
 
-    npx create-react-app userinterestfrontend
+    npm create vite@latest userinterestfrontend --template react 
     cd userinterestfrontend
 
 Install necessary packages:
 
-    npm install axios    # for API calls
-    npm install leaflet react-leaflet    # for map component
+    npm install --legacy-peer-deps
 
 Run the frontend:
 
-    npm start
+    npm run dev 
 
-The map functionality is in `src/components/MapComponents.js`, the render components are in `src/App.js`. Packaged dependancies will be managed by `package.json`, which is created automatically when `create-react-app` is called.
+The map functionality is in `src/components/Map.jsx`, the render components are in `src/App.jsx`. Packaged dependancies will be managed by `package.json`, which is created automatically when `npm create vite` is called.
 
 ## Set-up Django Backend
 
