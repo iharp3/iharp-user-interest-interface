@@ -19,7 +19,7 @@ The map functionality is in `src/components/Map.jsx`, the render components are 
 
 ## Set-up Django Backend
 
-Start virtual environment:
+In a second terminal window, start the virtual environment:
 
     python -m venv venv
     source venv/bin/activate

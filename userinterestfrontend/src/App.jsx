@@ -42,8 +42,6 @@ function App() {
   }, [variable, startDate, endDate]);
 
   const handleChange = (e) => {
-    // console.log(e);
-    console.log(formData);
     let myValue;
     const { name, value } = e.target;
     // Convert the input value to a number
@@ -95,7 +93,6 @@ function App() {
       }));
     } else {
       if (formData.min_lat && formData.max_lat && formData.max_lon && formData.min_lon) {
-        console.log(formData);
         setDrawnShapeBounds(() => ({
           _southWest: {
             lat: formData.min_lat,
@@ -121,7 +118,6 @@ function App() {
   const handleQueryResponse = (msg) => {
     const time = getTime();
     setQueryResponse(`${msg} (${time})`)
-    console.log(`${msg} (${time})`);
     setTimeout(() => {
       setQueryResponse("")
     }, 10000)
