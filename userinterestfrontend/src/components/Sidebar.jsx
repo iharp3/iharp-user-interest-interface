@@ -18,7 +18,8 @@ const Sidebar = ({
     formData,
     handleChange,
     queryData,
-    isLoading, }) => {
+    isLoading, 
+    queryResponse,}) => {
 
     return (
         <>
@@ -52,13 +53,13 @@ const Sidebar = ({
                     setVal={handleChange}
                     subLabel="temporalResolution"
                     defaultValue={"year"} />
-                <RadioButtons
+                {/* <RadioButtons
                     label="Temporal Aggregation"
                     options={["min", "max", "mean"]}
                     var={formData.temporalAggregation}
                     setVal={handleChange}
                     subLabel="temporalAggregation"
-                    defaultValue={"mean"} />
+                    defaultValue={"mean"} /> */}
                 <RadioButtons
                     label="Spatial Resolution"
                     options={[0.25, 0.5, 1]}
@@ -66,13 +67,13 @@ const Sidebar = ({
                     setVal={handleChange}
                     subLabel="spatialResolution"
                     defaultValue={1} />
-                <RadioButtons
+                {/* <RadioButtons
                     label="Spatial Aggregation"
                     options={["min", "max", "mean"]}
                     var={formData.spatialAggregation}
                     setVal={handleChange}
                     subLabel="spatialAggregation"
-                    defaultValue={"mean"} />
+                    defaultValue={"mean"} /> */}
                 <div className="hr" />
                 <CardinalDirections formData={formData} handleChange={handleChange} />
                 <div className="hr" />
@@ -80,13 +81,14 @@ const Sidebar = ({
                     onClick={() => queryData()}
                     variant="outlined"
                     disabled={isLoading}
-                    sx={{ marginBottom: "48px", marginTop: "auto" }}
+                    sx={{ marginTop: "auto" }}
                 >
                     <div className="button-content">
                         {isLoading && <div className="loading-spinner" />}
                         Query
                     </div>
                 </Button>
+                <p className="query-msg">{queryResponse}</p>
             </div>
         </>
     )
@@ -103,6 +105,7 @@ Sidebar.propTypes = {
     handleChange: PropTypes.func,
     queryData: PropTypes.func,
     isLoading: PropTypes.bool,
+    queryResponse: PropTypes.string,
 };
 
 export default Sidebar;

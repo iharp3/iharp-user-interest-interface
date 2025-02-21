@@ -11,7 +11,7 @@ const CardinalDirections = ({formData, handleChange}) => {
                     <TextField
                         type="number"
                         className="cardinal_input"
-                        value={formData.north}
+                        value={formData.max_lat}
                         name="north"
                         onChange={handleChange}
                         max="90"
@@ -27,7 +27,7 @@ const CardinalDirections = ({formData, handleChange}) => {
                             min="-180" 
                             className="ew_input" 
                             name="west"
-                            value={formData.west} 
+                            value={formData.min_lon} 
                             onChange={handleChange}/>
                     </div>
                     <div className="ew_sub_container">
@@ -38,7 +38,7 @@ const CardinalDirections = ({formData, handleChange}) => {
                             min="-180" 
                             name="east"
                             className="ew_input" 
-                            value={formData.east} 
+                            value={formData.max_lon} 
                             onChange={handleChange}/>
                     </div>
                 </div>
@@ -50,7 +50,7 @@ const CardinalDirections = ({formData, handleChange}) => {
                         type="number" 
                         name="south"
                         className="cardinal_input" 
-                        value={formData.south} 
+                        value={formData.min_lat} 
                         onChange={handleChange}/>
                 </div>
             </div>

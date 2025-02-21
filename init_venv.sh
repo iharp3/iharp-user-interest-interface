@@ -1,5 +1,4 @@
 rm -rf venv
-rm -rf venv
 
 python3.11 -m venv venv
 

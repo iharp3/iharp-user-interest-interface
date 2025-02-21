@@ -2,16 +2,13 @@
 The interface will facilitate user interest input by allowing users to choose regions of interest on a map and select the temporal and spatial resolution for that region.
 
 ## Implementation
-We will use React with Vite for the frontend and Django for the backend.
+Using React with Vite for the frontend and Django for the backend.
 
 ## Set-up React Frontend
-Create the React App:
-
-    npm create vite@latest userinterestfrontend --template react 
-    cd userinterestfrontend
 
 Install necessary packages:
 
+    cd userinterestfrontend
     npm install --legacy-peer-deps
 
 Run the frontend:
@@ -22,8 +19,20 @@ The map functionality is in `src/components/Map.jsx`, the render components are 
 
 ## Set-up Django Backend
 
+Start virtual environment:
+
+    python -m venv venv
+    source venv/bin/activate
+    pip install --upgrade pip
+    pip install -r requirements.txt
+
+Or alternatively:
+
+    bash init_venv.sh
+
 Run the backend:
 
+    cd backend
     python manage.py makemigrations
     python manage.py migrate
     python manage.py runserver
@@ -48,7 +57,3 @@ Backend directory structure:
 
 
 Package dependancies are managed with the `requirenments.txt` file. 
-
-Install dependencies:
-
-    bash init_venv.sh

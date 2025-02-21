@@ -32,11 +32,11 @@ const RadioButtons = ({label, options, val, setVal, subLabel, defaultValue}) => 
 RadioButtons.propTypes = {
     label: PropTypes.string,
     options: PropTypes.arrayOf(
-        PropTypes.string),
+        PropTypes.any),
     val: PropTypes.string,
     setVal: PropTypes.func,
     subLabel: PropTypes.string,
-    defaultValue: PropTypes.string,
+    defaultValue: PropTypes.any,
 }
 
 export default RadioButtons;

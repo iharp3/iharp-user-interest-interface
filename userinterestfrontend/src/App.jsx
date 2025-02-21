@@ -3,7 +3,6 @@ import { BoundsContext } from './util/context/BoundsContext'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 import MyMap from "./components/Map"
-import Tabs from './components/Tabs'
 import dayjs from 'dayjs'
 import './App.css'
 
@@ -13,14 +12,10 @@ function App() {
   const [variable, setVariable] = useState("2m_temperature");
   const [startDate, setStartDate] = useState(dayjs("2023-01-01T00:00Z"));
   const [endDate, setEndDate] = useState(dayjs("2023-12-31T23:00Z"));
-  const [secondAgg, setSecondAggMethod] = useState("mean");
-  const [comparisonVal, setComparisonVal] = useState(285);
-  const [predicate, setPredicate] = useState("<");
-  const [htmlString, setHtml] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [queryResponse, setQueryResponse] = useState("");
 
   const { drawnShapeBounds, setDrawnShapeBounds } = useContext(BoundsContext);
-
 
   const [formData, setFormData] = useState({
     requestType: "",
@@ -28,13 +23,13 @@ function App() {
     startDateTime: startDate,
     endDateTime: endDate,
     temporalResolution: "year",
-    temporalAggregation: "mean",
-    north: 84,
-    south: 59,
-    east: -10,
-    west: -74,
+    max_lat: 84,
+    min_lat: 59,
+    max_lon: -10,
+    min_lon: -74,
     spatialResolution: 1,
-    spatialAggregation: "mean",
+    // temporalAggregation: "mean",
+    // spatialAggregation: "mean",
   });
 
   useEffect(() => {
@@ -45,15 +40,6 @@ function App() {
       endDateTime: endDate,
     }))
   }, [variable, startDate, endDate]);
-
-  useEffect(() => {
-    setFormData((prev) => ({
-      ...prev,
-      filterValue: comparisonVal,
-      filterPredicate: predicate,
-      secondAgg: secondAgg,
-    }))
-  }, [secondAgg, comparisonVal, predicate])
 
   const handleChange = (e) => {
     // console.log(e);
@@ -108,26 +94,43 @@ function App() {
         },
       }));
     } else {
-      if (formData.south && formData.north && formData.east && formData.west) {
+      if (formData.min_lat && formData.max_lat && formData.max_lon && formData.min_lon) {
         console.log(formData);
         setDrawnShapeBounds(() => ({
           _southWest: {
-            lat: formData.south,
-            lng: formData.west,
+            lat: formData.min_lat,
+            lng: formData.min_lon,
           },
           _northEast: {
-            lat: formData.north,
-            lng: formData.east,
+            lat: formData.max_lat,
+            lng: formData.max_lon,
           },
         }));
       }
     }
   };
 
+  const getTime = () => {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    return `${hours}:${minutes}:${seconds}`;
+  }
+
+  const handleQueryResponse = (msg) => {
+    const time = getTime();
+    setQueryResponse(`${msg} (${time})`)
+    console.log(`${msg} (${time})`);
+    setTimeout(() => {
+      setQueryResponse("")
+    }, 10000)
+  }
+
   const queryData = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("/api/query/", {
+      const response = await fetch("http://localhost:8000/api/query/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -136,10 +139,10 @@ function App() {
       });
 
       if (response.ok) {
-        const jsonData = await response.json();
-        setHtml(jsonData);
+        handleQueryResponse("Successfully Queried Data");
       }
       else {
+        handleQueryResponse("Failed to Query Data");
         const errorResponse = await response.json();
         console.error(
           "Failed to fetch areas. HTTP status:",
@@ -164,10 +167,10 @@ function App() {
 
       setFormData((prevFormData) => ({
         ...prevFormData,
-        north: north_val,
-        east: east_val,
-        south: south_val,
-        west: west_val,
+        max_lat: north_val,
+        max_lon: east_val,
+        min_lat: south_val,
+        min_lon: west_val,
       }));
     }
   }, [drawnShapeBounds]);
@@ -186,15 +189,10 @@ function App() {
           formData={formData}
           handleChange={handleChange}
           queryData={queryData}
-          isLoading={isLoading} />
+          isLoading={isLoading} 
+          queryResponse={queryResponse}/>
         <div className="main_content">
           <MyMap/>
-          <Tabs
-            formData={formData}
-            setSecondAggMethod={setSecondAggMethod}
-            htmlString={htmlString}
-            setComparisonVal={setComparisonVal}
-            setPredicate={setPredicate} />
         </div>
       </div>
     </>
