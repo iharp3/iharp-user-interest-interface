@@ -1,4 +1,4 @@
-import Input from './input';
+import Input from './Input';
 import DateInput from './DateInput';
 import CardinalDirections from './CardinalDirections';
 import RadioButtons from './Radio';
@@ -23,17 +23,24 @@ const Sidebar = ({
 
     return (
         <>
-            <div className="sidebar_wrapper">
+            <div className="sidebar_wrapper" style={{ width: "300px" }}>
                 <div className="padding" />
                 <Input
                     val={variable}
                     setVal={setVariable}
                     label={"Variable"}
-                    options={["2m_temperature",
-                        "surface_pressure",
-                        "sea_surface_temperature",
-                        //"Surface Pressure",
-                        //Total Precipitation",
+                    options={["2 meter temperature",
+                        "Surface Pressure",
+                        "Sea Surface Temperature",
+                        "Total Precipitation",
+                        "Ice Temperature - Layer 1",
+                        "Ice Temperature - Layer 2",
+                        "Ice Temperature - Layer 3",
+                        "Ice Temperature - Layer 4",
+                        "Snow Depth",
+                        "Snowfall",
+                        "Snowmelt",
+                        "Temperature of Snow Layer"
                     ]}
                     sx={{ width: "65%" }}
                     size={"small"}
@@ -46,34 +53,28 @@ const Sidebar = ({
                     date={endDate}
                     setDate={setEndDate}
                     label="End Date & Time" />
+                {/* </div> */}
                 <RadioButtons
-                    label="Temporal Resolution"
-                    options={["hour", "day", "month", "year"]}
+                    label="Resolutions"
+                    options={["H", "D", "M", "Y"]}
                     var={formData.temporalResolution}
                     setVal={handleChange}
-                    subLabel="temporalResolution"
-                    defaultValue={"year"} />
-                {/* <RadioButtons
-                    label="Temporal Aggregation"
-                    options={["min", "max", "mean"]}
-                    var={formData.temporalAggregation}
-                    setVal={handleChange}
-                    subLabel="temporalAggregation"
-                    defaultValue={"mean"} /> */}
+                    // subLabel="temporalResolution"
+                    defaultValue={"Y"} />
                 <RadioButtons
-                    label="Spatial Resolution"
+                    // label="Spatial Resolution"
                     options={[0.25, 0.5, 1]}
                     var={formData.spatialResolution}
                     setVal={handleChange}
-                    subLabel="spatialResolution"
+                    // subLabel="spatialResolution"
                     defaultValue={1} />
-                {/* <RadioButtons
-                    label="Spatial Aggregation"
+                <RadioButtons
+                    label="Aggregation"
                     options={["min", "max", "mean"]}
-                    var={formData.spatialAggregation}
+                    // var={formData.spatialAggregation}
                     setVal={handleChange}
-                    subLabel="spatialAggregation"
-                    defaultValue={"mean"} /> */}
+                    // subLabel="spatialAggregation"
+                    defaultValue={"mean"} />
                 <div className="hr" />
                 <CardinalDirections formData={formData} handleChange={handleChange} />
                 <div className="hr" />
