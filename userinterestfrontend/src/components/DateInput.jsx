@@ -1,4 +1,3 @@
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
@@ -16,7 +15,7 @@ const DateInput = ({ date, setDate, label, sx }) => {
     return (
         <Box sx={sx}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer components={['DateTimePicker']}>
+                <Box components={['DateTimePicker']}>
                     <DateTimePicker
                         sx={{ scale: 0.9 }}
                         views={['year', 'day', 'hours']}
@@ -31,7 +30,7 @@ const DateInput = ({ date, setDate, label, sx }) => {
                         minDateTime={minDate}
                         onChange={(newDate) => setDate(newDate)}
                     />
-                </DemoContainer>
+                </Box>
             </LocalizationProvider>
         </Box>
     );

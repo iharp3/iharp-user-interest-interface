@@ -4,27 +4,48 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { Box } from '@mui/material';
 
 const RadioButtons = ({label, options, val, setVal, subLabel, defaultValue}) => {
 
+    // return (
+    //     <FormControl sx={{}}>
+    //         <FormLabel id={label}>{label}</FormLabel>
+    //         <RadioGroup
+    //         defaultValue={defaultValue}
+    //         row
+    //         aria-labelledby={label}
+    //         name={subLabel} 
+    //         sx={{width: "400px", scale: "85%", justifyContent: "center"}}
+    //         value={val}
+    //         onChange={setVal}
+    //         >
+    //             {options.map((option) => {
+    //                 return (
+    //                     <FormControlLabel key={option} value={option} control={<Radio/>} label={option}/>
+    //                 );
+    //             })}          
+    //         </RadioGroup>
+    //     </FormControl>
+    // );
     return (
-        <FormControl sx={{}}>
-            <FormLabel id={label}>{label}</FormLabel>
-            <RadioGroup
-            defaultValue={defaultValue}
-            row
-            aria-labelledby={label}
-            name={subLabel} 
-            sx={{width: "400px", scale: "85%", justifyContent: "center"}}
-            value={val}
-            onChange={setVal}
-            >
-                {options.map((option) => {
-                    return (
-                        <FormControlLabel key={option} value={option} control={<Radio/>} label={option}/>
-                    );
-                })}          
-            </RadioGroup>
+        <FormControl>
+            <Box sx={{ display: "flex", alignItems: "center"}}>
+                <FormLabel id={label} sx={{ }}>{label}:</FormLabel>
+                <RadioGroup
+                    defaultValue={defaultValue}
+                    row
+                    aria-labelledby={label}
+                    name={subLabel}
+                    sx={{ scale: "65%" }}
+                    value={val}
+                    onChange={setVal}
+                >
+                    {options.map((option) => (
+                        <FormControlLabel key={option} value={option} control={<Radio />} label={option} />
+                    ))}
+                </RadioGroup>
+            </Box>
         </FormControl>
     );
 }

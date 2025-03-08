@@ -42,18 +42,23 @@ const Sidebar = ({
                         "Snowmelt",
                         "Temperature of Snow Layer"
                     ]}
-                    sx={{ width: "65%" }}
+                    sx={{ width: "95%" }}
                     size={"small"}
                     varLabel={"variable"} />
-                <DateInput
-                    date={startDate}
-                    setDate={setStartDate}
-                    label="Start Date & Time" />
-                <DateInput
-                    date={endDate}
-                    setDate={setEndDate}
-                    label="End Date & Time" />
-                {/* </div> */}
+                <div className="time_range" style={{display: "flex"}}>
+                    <div><DateInput
+                            sx={{marginRight: "-4px"}}
+                            date={startDate}
+                            setDate={setStartDate}
+                            label="Start Date & Time"/>
+                    </div>
+                    <div><DateInput
+                            sx={{marginLeft: "-4px"}}
+                            date={endDate}
+                            setDate={setEndDate}
+                            label="End Date & Time" />
+                    </div>
+                </div>
                 <RadioButtons
                     label="Resolutions"
                     options={["H", "D", "M", "Y"]}
